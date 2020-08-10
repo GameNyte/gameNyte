@@ -1,0 +1,8 @@
+# Node React gitignore
+
+node_modules/
+npm-debug.log*
+.npm
+.env
+.idea/
+build/
