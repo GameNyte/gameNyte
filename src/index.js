@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Room from './components/room.js';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const App = () => {
-  return <h1>My React App!!</h1>;
+  return (
+  <Provider store={store}>
+    <Room />
+  </Provider>
+
+  );
 };
 
 const root = document.getElementById('root');
