@@ -1,11 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app.js';
-// attach component to the DOM
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App/>, rootElement);
+
+import Room from './components/room.js';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
+import Header from './components/header.js';
 
+const App = () => {
+  return (
+
+  <Provider store={store}>
+    <Header />
+    <Room />
+  </Provider>
+
+  );
+
+};
 
 
