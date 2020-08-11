@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './app.js';
+// attach component to the DOM
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App/>, rootElement);
 
-const App = () => {
-  return <h1>My React App!!</h1>;
-};
 
-const root = document.getElementById('root');
-ReactDOM.render(<App />, root);
+
+
+
