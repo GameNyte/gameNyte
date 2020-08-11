@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Header from './components/header.js';
+
 const App = () => {
-  return <h1>My React App!!</h1>;
+  return (
+    <>
+      <Header />
+    </>
+  )
 };
 
 const root = document.getElementById('root');
