@@ -16,7 +16,7 @@ const Room = (props) => {
 
   const [input, setInput] = useState('');
 
-  const socket = io('http://localhost:3000');
+  const socket = io('http://localhost:3001');
   
   socket.on('new-room', (results) => {
     console.log('new room results: ', results);
