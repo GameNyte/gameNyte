@@ -65,7 +65,7 @@ const SimpleModal = (props) => {
         Welcome to Game Nyte!
       </p>
 
-      {/* <a target="_blank" href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&response_type=code&scope=identify">Login with Discord</a> */}
+      <a href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&response_type=code&scope=identify">Login with Discord</a>
 
       <form   
          className={classes.root} noValidate autoComplete="off">
