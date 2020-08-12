@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Player from './player.js';
 
-class Board extends Component {
+class Board extends React.Component {
     render() {
         return (
-            <div className="Board">
-                {this.props.children}
-            </div>
+            <>
+                <div className="board" style={{  
+                    backgroundImage: "url(" + "https://www.teachertoolsinc.com/images/detailed/26/ASH91022.jpg" + ")",
+                    height:'auto',
+                    width:'auto',
+                    backgroundPosition: 'absolute',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                    }}>
+                    <Player/>
+                </div>
+            </>
         );
     }
 }
