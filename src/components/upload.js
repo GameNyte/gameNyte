@@ -40,7 +40,7 @@ class Upload extends Component {
      }
 
      packageSent.push(data, this.state.boardGameName, this.state.gameName)
-     console.log(packageSent[1].value)
+     console.log(packageSent[1])
      
   axios.post( 'http://localhost:3001/api/profile/profile-img-upload', packageSent[0], {
       headers: {
@@ -69,7 +69,11 @@ class Upload extends Component {
          alert( 'File Uploaded', '#3089cf' );
   }
        }
-      }).catch( ( error ) => {
+      })
+      .then(
+        axios.post()
+      )
+      .catch( ( error ) => {
       // If another error
       alert( error, 'red' );
      });
