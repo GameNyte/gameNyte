@@ -1,18 +1,33 @@
 import React from 'react';
 import Player from './player.js';
+import GameHud from './gameHUD.js';
+import Upload from './upload.js'
 
 class Board extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            maps: []
+        }
+        this.handleAwsRes = this.handleAwsRes.bind(this);
+    }
+
+    handleAwsRes = (req, res) => {
+        this.setState({maps: res.body})
+    }
+
     render() {
         return (
             <>
-                <div className="board" style={{  
-                    backgroundImage: "url(" + "https://www.teachertoolsinc.com/images/detailed/26/ASH91022.jpg" + ")",
-                    height:'auto',
-                    width:'auto',
-                    backgroundPosition: 'absolute',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                    }}>
+                <div>
+                    <Upload
+                        maps={this.state.maps}
+                        handleAwsRes={this.handleAwsRes}
+                    />
+                </div>
+                <div className="board">
+                    <img src="http://www.quadibloc.com/other/images/game.gif"/>
+                    <GameHud/>
                     <Player/>
                 </div>
             </>

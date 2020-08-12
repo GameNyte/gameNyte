@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Draggable from 'react-draggable';
+import '../scss/player.scss'
 
 class Player extends React.Component {
 
@@ -23,7 +23,7 @@ class Player extends React.Component {
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}>
                 <div>
-                    <div className="handle"> Player </div>
+                    <div className="handle"></div>
                 </div>
             </Draggable>
         );

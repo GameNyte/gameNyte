@@ -27,15 +27,15 @@ class GameHUD extends React.Component {
             <>
                 <React.Fragment key='left'>
                     <Button onClick={this.toggleGameHUD}>
-                        <Icon>
+                        {/* <Icon>
                             <ArrowForwardIosIcon/>
-                        </Icon>
+                        </Icon> */}
                     </Button>
                     <Drawer open={this.state.open}>
                         <Button onClick={this.toggleGameHUD}>
-                            <Icon>
+                            {/* <Icon>
                                 <ArrowBackIosIcon/>
-                            </Icon>
+                            </Icon> */}
                         </Button>
                     </Drawer>
                 </React.Fragment>
