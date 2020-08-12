@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SimpleModal from './login-banner.js'
 
