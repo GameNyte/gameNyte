@@ -1,9 +1,8 @@
-import React from 'react';
+  import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => {
-  return <h1>My React App!!</h1>;
-};
+import App from './app.js';
 
-const root = document.getElementById('root');
-ReactDOM.render(<App />, root);
+// attach component to the DOM
+const rootElement = document.getElementById('root');
+ReactDOM.render(<App />, rootElement);
