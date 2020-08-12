@@ -20,7 +20,7 @@ const Room = (props) => {
   
   socket.on('new-room', (results) => {
     console.log('new room results: ', results);
-    props.createRoom(results.id);
+    props.createRoom(results);
   }) 
 
  
@@ -37,6 +37,12 @@ const Room = (props) => {
     socket.emit('join', input);
     props.joinRoom(input);
     setInput('');
+  }
+
+  function exitRoom() {  
+    socket.emit('leave', props.room.room);
+    props.leaveRoom();
+    
   }
 
   console.log(props.room);
@@ -66,6 +72,13 @@ const Room = (props) => {
       >Join Room</Button>
       </form>
       <h1>Room: {props.room.room}</h1>
+      <Button
+      onClick={(e) => { 
+        e.preventDefault();
+        exitRoom();
+        console.log('button clicked');
+      }}
+      >Leave Room</Button>
     </>
 
 
