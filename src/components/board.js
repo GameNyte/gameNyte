@@ -1,8 +1,11 @@
 import React from 'react';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
 import Player from './player.js';
 import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
+
 
 class Board extends React.Component {
     constructor() {
@@ -25,6 +28,7 @@ class Board extends React.Component {
         this.handleDrag = this.handleDrag.bind(this);
     }
 
+
     handleDrag = (e, ui) => {
         const { x, y } = this.state.deltaPosition;
         this.setState({
@@ -43,8 +47,9 @@ class Board extends React.Component {
         this.setState({ activeDrags: --this.state.activeDrags });
     };
 
-    handleAwsRes = (req, res) => {
-        this.setState({ maps: res.body })
+    handleAwsRes = (fileName) => {
+        this.setState({maps: this.state.maps.concat(fileName.locationArray[0])})
+
     }
 
     render() {
@@ -58,13 +63,15 @@ class Board extends React.Component {
                         handleAwsRes={this.handleAwsRes}
                     />
                 </div>
+
                 <div className="board" style={{height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0'}}>
-                    <img src="http://www.quadibloc.com/other/images/game.gif" />
+                    <img src="{this.state.maps[0]" />
                     <GameHud />
                     <Draggable bounds="parent" {...dragHandlers}>
                         {/* <Player/> */}
                         <div className="handle" style={{height:'25px', width:'25px'}}></div>
                     </Draggable>
+
                 </div>
             </>
         );
