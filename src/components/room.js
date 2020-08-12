@@ -20,7 +20,7 @@ const Room = (props) => {
   
   socket.on('new-room', (results) => {
     console.log('new room results: ', results);
-    props.createRoom(results.id);
+    props.createRoom(results);
   }) 
 
  
