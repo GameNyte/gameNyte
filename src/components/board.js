@@ -1,7 +1,9 @@
 import React from 'react';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
 import Player from './player.js';
 import GameHud from './gameHUD.js';
-import Upload from './upload.js'
+import Upload from './upload.js';
 
 class Board extends React.Component {
     constructor() {
@@ -12,8 +14,8 @@ class Board extends React.Component {
         this.handleAwsRes = this.handleAwsRes.bind(this);
     }
 
-    handleAwsRes = (req, res) => {
-        this.setState({maps: res.body})
+    handleAwsRes = (fileName) => {
+        this.setState({maps: this.state.maps.concat(fileName.locationArray[0])})
     }
 
     render() {
@@ -26,7 +28,7 @@ class Board extends React.Component {
                     />
                 </div>
                 <div className="board">
-                    <img src="http://www.quadibloc.com/other/images/game.gif"/>
+                    <img src={this.state.maps[0]}/>
                     <GameHud/>
                     <Player/>
                 </div>

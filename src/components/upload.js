@@ -19,7 +19,7 @@ class Upload extends Component {
     console.log( event.target.files );
   };
 
-  multipleFileUploadHandler = () => {
+  multipleFileUploadHandler = (props) => {
     const packageSent = []
     const data = new FormData();
     data.set('Board Game Name', `${this.state.boardGameName}`)
@@ -59,10 +59,9 @@ class Upload extends Component {
          let fileName = response.data;
          console.log( 'fileName', fileName );
          alert( 'File Uploaded', '#3089cf' );
+         this.props.handleAwsRes(fileName)
   }
        }
-      }).then( (req, res) => {
-        console.log(res.data)
       })
       .catch( ( error ) => {
       // If another error
