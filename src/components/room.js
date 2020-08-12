@@ -39,6 +39,12 @@ const Room = (props) => {
     setInput('');
   }
 
+  function exitRoom() {  
+    socket.emit('leave', props.room.room);
+    props.leaveRoom();
+    
+  }
+
   console.log(props.room);
 
   return (
@@ -66,6 +72,13 @@ const Room = (props) => {
       >Join Room</Button>
       </form>
       <h1>Room: {props.room.room}</h1>
+      <Button
+      onClick={(e) => { 
+        e.preventDefault();
+        exitRoom();
+        console.log('button clicked');
+      }}
+      >Leave Room</Button>
     </>
 
 
