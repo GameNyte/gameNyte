@@ -1,5 +1,5 @@
 import React from 'react';
-import Draggable from 'react-draggable';
+
 import '../scss/player.scss'
 
 class Player extends React.Component {
@@ -12,20 +12,7 @@ class Player extends React.Component {
     // TODO: When a player's turn ends, we need set the property "axis" to the string of 'none', which stops the piece from moving.
     render() {
         return (
-            <Draggable
-                axis="both"
-                handle=".handle"
-                defaultPosition={{ x: 0, y: 0 }}
-                position={null}
-                grid={[1, 1]}
-                scale={1}
-                onStart={this.handleStart}
-                onDrag={this.handleDrag}
-                onStop={this.handleStop}>
-                <div>
-                    <div className="handle"></div>
-                </div>
-            </Draggable>
+            <div className="handle"></div>
         );
     }
 }
