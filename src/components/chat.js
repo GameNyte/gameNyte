@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Button, TextField, Paper, Typography, List, ListItem } from '@material-ui/core';
 import { connect } from 'react-redux';
-// import Room from '../store/room.js';
 
-
-const io = require('socket.io-client');
 
 
 
 const Chat = (props) => {
 
   const [input, setInput] = useState('');
+  const [messageArchive, setMessageArchive] = useState([]);
 
-  const socket = io('http://localhost:3000');
+  if (Object.keys(props.socket).length) {
+    props.socket.on('message', (results) => {
+      setMessageArchive([...messageArchive, results])
+    })
+  };
 
-  socket.on('message', (results) => {
-    console.log('message results: ', results);
-  })
+  if (Object.keys(props.socket).length) {
+    props.socket.on('load-messages', (results) => {
+      setMessageArchive(results);
+    })
+  };
 
- 
+   
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -28,7 +32,7 @@ const Chat = (props) => {
       room: props.room.room,
       // user: props.user,
   }
-    socket.emit('message', payload);
+    props.socket.emit('message', payload);
     setInput('');
   }
 
@@ -41,10 +45,10 @@ const Chat = (props) => {
         } }/>
         <Button type="submit" variant="outlined">Send Message</Button>
       </form>
-        {/* <Paper >
+        <Paper >
         <Typography component="h3">Messages</Typography>
-        <List >{messages.map((data, idx) => <ListItem key={idx}>{data.text}</ListItem>)}</List>
-        </Paper> */}
+        <List >{messageArchive.map((data, idx) => <ListItem key={idx}>{data}</ListItem>)}</List>
+        </Paper>
     </>
 
 
@@ -57,7 +61,8 @@ const Chat = (props) => {
 const mapStateToProps = state => {  
 
   return {
-    room: state.room,  
+    room: state.room, 
+    socket: state.room.socket 
     // user: state.user      
   };
 };

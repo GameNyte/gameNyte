@@ -1,59 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { createRoom, joinRoom, leaveRoom } from '../store/room.js';
-
-const io = require('socket.io-client');
-
-
-
-
-
-
+import { createRoom, joinRoom, leaveRoom, connectSocket } from '../store/room.js';
 
 
 const Room = (props) => {
 
-  const [input, setInput] = useState('');
-
-  const socket = io('http://localhost:3001');
   
-  socket.on('new-room', (results) => {
+
+  const [input, setInput] = useState('');
+  
+
+  
+  useEffect(() => {  
+    props.connectSocket();    
+  }
+, []);
+
+
+if (Object.keys(props.socket).length) {
+  props.socket.on('new-room', (results) => {
     console.log('new room results: ', results);
     props.createRoom(results);
-  }) 
-
- 
-  
+  })
+};
 
   function makeRoom() {
     console.log('createRoom from client running');
-    socket.emit('createRoom');
+    props.socket.emit('createRoom');
   }
 
   function enterRoom() {
     console.log('input from enterRoom: ', input);
     
-    socket.emit('join', input);
+    props.socket.emit('join', input);
     props.joinRoom(input);
     setInput('');
   }
 
   function exitRoom() {  
-    socket.emit('leave', props.room.room);
+    props.socket.emit('leave', props.room.room);
     props.leaveRoom();
     
   }
 
-  console.log(props.room);
 
   return (
     <>
       <Button
         onClick={(e) => { 
           e.preventDefault();
-          makeRoom();
-          console.log('button clicked');
+          makeRoom();          
         }}
       >Create Room</Button>
       <form id="join">
@@ -67,7 +64,6 @@ const Room = (props) => {
       onClick={(e) => { 
         e.preventDefault();
         enterRoom();
-        console.log('button clicked');
       }}
       >Join Room</Button>
       </form>
@@ -75,8 +71,7 @@ const Room = (props) => {
       <Button
       onClick={(e) => { 
         e.preventDefault();
-        exitRoom();
-        console.log('button clicked');
+        exitRoom();        
       }}
       >Leave Room</Button>
     </>
@@ -88,11 +83,12 @@ const Room = (props) => {
 const mapStateToProps = state => {  
 
   return {
-    room: state.room,        
+    room: state.room,
+    socket: state.room.socket,        
   };
 };
 
-const mapDispatchToProps = { createRoom, joinRoom, leaveRoom };
+const mapDispatchToProps = { createRoom, joinRoom, leaveRoom, connectSocket };
 
 
 export default connect(

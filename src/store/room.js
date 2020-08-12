@@ -1,6 +1,8 @@
+const io = require('socket.io-client');
 
 const initialState = {
   room: '',
+  socket: '',
 }
 
 
@@ -20,6 +22,10 @@ export default (state = initialState, action) => {
     case 'LEAVE':
       return initialState;  
 
+    case 'CONNECT':
+      const socket = io(payload);
+      return {...state, 'socket': socket};
+
     default:
       return state;
   }
@@ -29,6 +35,13 @@ export const createRoom = (room) => {
   return {
     type: 'CREATE',
     payload: room,
+  }
+}
+
+export const connectSocket = () => {
+  return {
+    type: 'CONNECT',
+    payload: 'http://localhost:3000',
   }
 }
 
