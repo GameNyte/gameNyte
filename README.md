@@ -1,4 +1,4 @@
-# REHaB
+# GameNyte
 ![logo](public/assets/graphics/REHaB_Icon.png)
 
 

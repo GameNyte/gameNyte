@@ -5,13 +5,6 @@ import { createRoom, joinRoom, leaveRoom } from '../store/room.js';
 
 const io = require('socket.io-client');
 
-
-
-
-
-
-
-
 const Room = (props) => {
 
   const [input, setInput] = useState('');
