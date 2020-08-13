@@ -1,7 +1,7 @@
 import React from 'react';
 import { Drawer, Button, Icon } from '@material-ui/core';
-import { ArrowForwardIosIcon } from '@material-ui/icons';
-import { ArrowBackIosIcon } from '@material-ui/icons';
+// import { ArrowForwardIosIcon } from '@material-ui/icons';
+// import { ArrowBackIosIcon } from '@material-ui/icons';
 
 
 class GameHUD extends React.Component {

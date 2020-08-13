@@ -1,11 +1,8 @@
 import React from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
-import Player from './player.js';
+import Token from './tokens.js';
 import GameHud from './gameHUD.js';
 import Upload from './upload.js'
-import Draggable from 'react-draggable';
-
 
 class Board extends React.Component {
     constructor() {
@@ -20,7 +17,24 @@ class Board extends React.Component {
                 controlledPosition: {
                     x: -400, y: 200
                 }
-            }
+            }, 
+            playerList: [
+                {
+                    name: "Melissa",
+                    color: "blue",
+                    score: 0,
+                },
+                {
+                    name: "Dave",
+                    color: "grey",
+                    score: 0,
+                },
+                {
+                    name: "Ruhai",
+                    color: "red",
+                    score: 0,
+                }
+            ],
         }
         this.handleAwsRes = this.handleAwsRes.bind(this);
         this.onStart = this.onStart.bind(this);
@@ -65,13 +79,9 @@ class Board extends React.Component {
                 </div>
 
                 <div className="board" style={{height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0'}}>
-                    <img src="{this.state.maps[0]" />
-                    <GameHud />
-                    <Draggable bounds="parent" {...dragHandlers}>
-                        {/* <Player/> */}
-                        <div className="handle" style={{height:'25px', width:'25px'}}></div>
-                    </Draggable>
-
+                    <img src="{this.state.maps[0]}" alt=""/>
+                    <GameHud/>
+                    <Token playerList={this.state.playerList}/>
                 </div>
             </>
         );
