@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 
 
 import Player from './player.js';
-import GameHud from './gameHUD.js';
+// import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
 import Token from './token.js'
@@ -127,7 +127,7 @@ class Board extends React.Component {
                             <img onClick={(event) => {
                                 console.log(event.button)
                             }} src={this.state.maps[0]} />
-                            <GameHud />
+                            {/* <GameHud /> */}
                             
                             <Token
                                 playerList = {this.state.playerList}

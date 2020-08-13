@@ -1,4 +1,19 @@
-const initialState = [];
+const initialState = [{
+  name: "Melissa",
+  color: "blue",
+  score: 0,
+},
+{
+  name: "Dave",
+  color: "grey",
+  score: 0,
+},
+{
+  name: "Ruhai",
+  color: "red",
+  score: 0,
+}
+];
 
 
 export default (state = initialState, action) => {
@@ -12,7 +27,7 @@ export default (state = initialState, action) => {
       return [payload];
 
     case 'QUIT':
-      return initialState;  
+      return initialState;
 
 
     default:
