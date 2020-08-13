@@ -87,6 +87,7 @@ const SimpleModal = (props) => {
         </a>
   
         </div>
+
       <form onSubmit={(e) => {
         e.preventDefault();
         props.createAccount(e)} 
@@ -107,17 +108,21 @@ const SimpleModal = (props) => {
         }/>
         <Button type="submit"  color="primary">Create Account</Button>
         
+
       </form>
       </div>
+
     </div>
   );
 
   return (
     
     <div>
+
       <IconButton onClick={handleOpen} color="inherit" aria-label="menu">
       <FaceIcon/>
     </IconButton>
+
       <Modal
         open={open}
         onClose={handleClose}

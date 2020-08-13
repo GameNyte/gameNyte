@@ -33,6 +33,7 @@ const Header = (props) => {
   verifyAndSetUsername(reqToken);
 
   return (
+
     <AppBar position="static">
       <div className={classes.header}>
         <div className={classes.title}>
@@ -45,6 +46,7 @@ const Header = (props) => {
           <Typography component="h3">Welcome, {displayName}!</Typography>
         </If> */}
         <LoginBanner />
+
     </div>
       </AppBar>
   )

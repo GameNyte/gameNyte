@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 const Room = (props) => {
   const classes = useStyles();
 
@@ -44,6 +45,19 @@ const Room = (props) => {
   }
 , []);
 
+const Room = (props) => {
+  
+
+
+  const [input, setInput] = useState('');
+  
+  
+  useEffect(() => {  
+    props.connectSocket();    
+  }
+, []);
+
+
 
 useEffect(() => { 
   if (Object.keys(props.socket).length) {
@@ -54,8 +68,9 @@ useEffect(() => {
 , [props.room.room]);
 
 
-
 if (Object.keys(props.socket).length) {
+
+  
 
   props.socket.on('new-room', (results) => {
     props.createRoom(results);
@@ -81,6 +96,7 @@ if (Object.keys(props.socket).length) {
     props.socket.emit('createRoom');  
   }
 
+
   function enterRoom() {    
     props.socket.emit('join', input);
     props.joinRoom(input);
@@ -96,6 +112,7 @@ if (Object.keys(props.socket).length) {
 
 
   return (
+
     < >
     <div className={classes.RoomRoot}>
     <Paper>
@@ -103,6 +120,7 @@ if (Object.keys(props.socket).length) {
     <Button className={classes.button}
     variant="contained"
     color="primary"
+
         onClick={(e) => { 
           e.preventDefault();
           makeRoom();          
@@ -134,9 +152,11 @@ if (Object.keys(props.socket).length) {
       >Join</Button>
       </form>
       <h1>Room: {props.room.room}</h1>
+
     
       </Paper>
       </div>
+
     </>
 
 
