@@ -1,7 +1,11 @@
 import React from 'react';
-import { Drawer, Button, Icon } from '@material-ui/core';
-import { ArrowForwardIosIcon } from '@material-ui/icons';
-import { ArrowBackIosIcon } from '@material-ui/icons';
+
+import { Avatar, Drawer, Button, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+
 
 
 class GameHUD extends React.Component {
@@ -27,16 +31,43 @@ class GameHUD extends React.Component {
             <>
                 <React.Fragment key='left'>
                     <Button onClick={this.toggleGameHUD}>
-                        {/* <Icon>
-                            <ArrowForwardIosIcon/>
-                        </Icon> */}
+
+                        <ArrowBackIosIcon />
+                        Open HUD
                     </Button>
                     <Drawer open={this.state.open}>
                         <Button onClick={this.toggleGameHUD}>
-                            {/* <Icon>
-                                <ArrowBackIosIcon/>
-                            </Icon> */}
+                            Close HUD
+                            <ArrowForwardIosIcon />
                         </Button>
+
+
+
+                        <div>
+                            <List>
+                                {this.state.playerList.map((player, idx) => {
+                                    return (
+                                        <ListItem id={idx} backgroundColor="red">
+                                            <ListItemAvatar>
+                                                <Avatar color="orange">
+                                                    {player.name[0]}
+                                                </Avatar>
+                                                <Typography>{player.name}</Typography>
+                                                <Typography>Score: {player.score}</Typography>
+                                                <ArrowDropUpIcon />
+
+                                                <ArrowDropDownIcon />
+                                            </ListItemAvatar>
+                                            <ListItemText />
+                                        </ListItem>
+                                    )
+                                })}
+
+                            </List>
+                        </div>
+
+
+
                     </Drawer>
                 </React.Fragment>
             </>

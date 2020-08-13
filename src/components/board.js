@@ -2,11 +2,13 @@ import React from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
+
 import Player from './player.js';
 import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
 import Token from './token.js'
+
 
 
 class Board extends React.Component {
@@ -22,6 +24,7 @@ class Board extends React.Component {
                 controlledPosition: {
                     x: -400, y: 200
                 }
+
             },
             zoomWrapper: {
                 panningEnabled: false,
@@ -81,6 +84,7 @@ class Board extends React.Component {
     };
 
     handleAwsRes = (fileName) => {
+
         this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
 
     }
@@ -93,6 +97,7 @@ class Board extends React.Component {
         const {value, min, step, max} = this.state.slider
         const {panningEnabled, maxScale, minScale} = this.state.zoomWrapper;
         const { deltaPosition, controlledPosition } = this.state.playerLocation;
+
         return (
             <>
                 <div>
@@ -101,6 +106,7 @@ class Board extends React.Component {
                         handleAwsRes={this.handleAwsRes}
                     />
                 </div>
+
                 <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>
                     <Slider
                         slider={{
