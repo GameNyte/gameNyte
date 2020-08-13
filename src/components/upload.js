@@ -10,6 +10,8 @@ class Upload extends Component {
       boardGameName: null,
     }
   }
+
+  
   multipleFileChangedHandler = (event) => {
     this.setState({
      selectedFiles: event.target.files
@@ -17,17 +19,7 @@ class Upload extends Component {
     console.log( event.target.files );
   };
 
-  gameNameHandler = (event) => {
-    this.setState({gameName: event.target});
-    console.log(event.target)
-  }
-
-  boardGameNameHandler = (event) => {
-    this.setState({boardGameName: event.target});
-    console.log(event.target)
-  }
-
-  multipleFileUploadHandler = () => {
+  multipleFileUploadHandler = (props) => {
     const packageSent = []
     const data = new FormData();
     data.set('Board Game Name', `${this.state.boardGameName}`)
@@ -67,12 +59,10 @@ class Upload extends Component {
          let fileName = response.data;
          console.log( 'fileName', fileName );
          alert( 'File Uploaded', '#3089cf' );
+         this.props.handleAwsRes(fileName)
   }
        }
       })
-      .then(
-        axios.post()
-      )
       .catch( ( error ) => {
       // If another error
       alert( error, 'red' );
@@ -95,8 +85,6 @@ class Upload extends Component {
         </div>
         <div className="card-body">
          <p className="card-text">Please upload the Gallery Images for your gallery</p>
-         <input type="text" onChange={this.boardGameNameHandler}/>
-         <input type="text" onChange={this.gameNameHandler}/>
          <input type="file" multiple onChange={this.multipleFileChangedHandler}/>
          <div className="mt-5">
           <button className="btn btn-info" onClick={this.multipleFileUploadHandler}>Upload!</button>
