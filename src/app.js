@@ -26,13 +26,15 @@ export default class App extends React.Component {
 
           <Header />
 
-          <If condition={!window.location.search}>
+
+          {/* <If condition={!window.location.search}> */}
             <Login />
-          </If>
+          {/* </If> */}
 
 {/* TODO: THESE WIll need to go back inside of the IF statement */}
-          <If condition={window.location.search} >
-          </If>
+          {/* <If condition={window.location.search} >
+          </If> */}
+
 
           <Room />
           {/* <Upload /> */}

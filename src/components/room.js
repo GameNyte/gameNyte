@@ -1,13 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Paper } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { createRoom, joinRoom, leaveRoom, connectSocket } from '../store/room.js';
 import { createPlayers, leavePlayers } from '../store/players.js';
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles((theme) => ({
+  RoomRoot: {
+    display:'flex',
+    flexDirection:'column',
+    alignItems:'center',
+    justifyContent:'center',
+    width:'40vw',
+    margin:'20px',
+    marginLeft:'-15px'
+  },
+  buttonsContainer:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    height:'2em'
+  },
+  joinRoom: {
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    margin:'10px',
+  },
+  button: {
+    margin:'10px',
+  }
+}));
 
 
 const Room = (props) => {
+  const classes = useStyles();
+
+  const [input, setInput] = useState('');
   
+  
+  useEffect(() => {  
+    props.connectSocket();    
+  }
+, []);
+
+const Room = (props) => {
+  
+
 
   const [input, setInput] = useState('');
   
@@ -18,6 +58,7 @@ const Room = (props) => {
 , []);
 
 
+
 useEffect(() => { 
   if (Object.keys(props.socket).length) {
   addPlayer();
@@ -25,7 +66,6 @@ useEffect(() => {
   }
 }
 , [props.room.room]);
-
 
 
 if (Object.keys(props.socket).length) {
@@ -56,6 +96,7 @@ if (Object.keys(props.socket).length) {
     props.socket.emit('createRoom');  
   }
 
+
   function enterRoom() {    
     props.socket.emit('join', input);
     props.joinRoom(input);
@@ -71,14 +112,30 @@ if (Object.keys(props.socket).length) {
 
 
   return (
-    <>
-    <Button
+
+    < >
+    <div className={classes.RoomRoot}>
+    <Paper>
+      <div className={classes.buttonsContainer}>
+    <Button className={classes.button}
+    variant="contained"
+    color="primary"
+
         onClick={(e) => { 
           e.preventDefault();
           makeRoom();          
         }}
-      >Create Room</Button>
-      <form id="join">
+      >Create </Button>
+        <Button className={classes.button}
+      variant="contained"
+      color="primary"
+      onClick={(e) => { 
+        e.preventDefault();
+        exitRoom();        
+      }}
+      >Leave </Button>
+      </div>
+      <form className={classes.joinRoom}>
       <TextField placeholder="Room ID" value={input} label="Room" onChange={
         (e) => {
           setInput(e.target.value);
@@ -86,19 +143,20 @@ if (Object.keys(props.socket).length) {
         }
         }></TextField>
       <Button
+      variant="contained"
+      color="primary"
       onClick={(e) => { 
         e.preventDefault();
         enterRoom();
       }}
-      >Join Room</Button>
+      >Join</Button>
       </form>
       <h1>Room: {props.room.room}</h1>
-      <Button
-      onClick={(e) => { 
-        e.preventDefault();
-        exitRoom();        
-      }}
-      >Leave Room</Button>
+
+    
+      </Paper>
+      </div>
+
     </>
 
 
