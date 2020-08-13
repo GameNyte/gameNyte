@@ -1,5 +1,4 @@
 import React from 'react';
-import Upload from './components/upload.js';
 
 import Room from './components/room.js';
 import { Provider } from 'react-redux';
@@ -16,8 +15,7 @@ export default class App extends React.Component {
 
             <Provider store={store}>
                 <Header />
-                <Room />
-                <Upload />
+                {/* <Room /> */}
                 <Board/>
             </Provider>
         );
