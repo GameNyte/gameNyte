@@ -47,10 +47,10 @@ const SimpleModal = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-    const handleOpen = () => {
-    setOpen(true);
+
+  const handleOpen = () => {
+  setOpen(true);
   };
 
   const handleClose = () => {
@@ -67,7 +67,8 @@ const SimpleModal = (props) => {
 
       <a href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&response_type=code&scope=identify">Login with Discord</a>
 
-      <form   
+{/* ------------------------- Login and Create Account form options----------------- */}
+      {/* <form   
          className={classes.root} noValidate autoComplete="off">
 
       <FormLabel component="legend">Login to Game Nyte</FormLabel>
@@ -100,16 +101,16 @@ const SimpleModal = (props) => {
         }/>
         <Button type="submit"  color="primary">Create Account</Button>
         
-      </form>
-
-          
+      </form> */}
+{/* ---------------------------- End of Login and Create Account Forms ----------------------------- */}
     </div>
   );
 
   return (
+    
     <div>
       <button type="button" onClick={handleOpen}>
-        Open Modal
+        Login
       </button>
       <Modal
         open={open}
