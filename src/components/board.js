@@ -1,20 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
 
 import Player from './player.js';
-// import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
-import Token from './token.js'
+// import Token from './token.js'
+import Token from './token-two.js'
+
 
 
 
 class Board extends React.Component {
-    constructor() {
-        super();
-        this.state = {
+    constructor(props) {
+        super(props);
+        this.state = {  
             maps: [],
             playerLocation: {
                 activeDrags: 0,
@@ -24,7 +26,6 @@ class Board extends React.Component {
                 controlledPosition: {
                     x: -400, y: 200
                 }
-
             },
             zoomWrapper: {
                 panningEnabled: false,
@@ -33,23 +34,6 @@ class Board extends React.Component {
                 step: 1,
                 scale: 1,
             },
-            playerList: [
-                {
-                    name: "Melissa",
-                    color: "blue",
-                    score: 0,
-                },
-                {
-                    name: "Dave",
-                    color: "grey",
-                    score: 0,
-                },
-                {
-                    name: "Ruhai",
-                    color: "red",
-                    score: 0,
-                }
-            ],
             slider: {
                 value: 1,
                 min: 0,
@@ -127,11 +111,12 @@ class Board extends React.Component {
                             <img onClick={(event) => {
                                 console.log(event.button)
                             }} src={this.state.maps[0]} />
-                            {/* <GameHud /> */}
                             
-                            <Token
+                            <Token />
+
+                            {/* <Token
                                 playerList = {this.state.playerList}
-                            />
+                            /> */}
 
                         </TransformComponent>
                     </TransformWrapper>
@@ -141,4 +126,16 @@ class Board extends React.Component {
     }
 }
 
-export default Board;
+const mapStateToProps = state => {
+
+    return {
+        playerList: state.players,
+    };
+};
+
+const mapDispatchToProps = null;
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Board);
