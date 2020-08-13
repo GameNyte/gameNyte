@@ -4,6 +4,7 @@ import { BrowserRouter, Route, NavLink as Link } from 'react-router-dom';
 import Upload from './components/upload.js';
 // import GameBoard from './components/gameBoard.js';
 
+
 import Room from './components/room.js';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -12,6 +13,7 @@ import Login from './components/login-banner.js';
 import If from './components/if.js';
 
 import Board from './components/board.js';
+
 
 export default class App extends React.Component {
   render() {

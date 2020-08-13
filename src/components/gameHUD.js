@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Avatar, Drawer, Button, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -6,29 +7,13 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
+
 class GameHUD extends React.Component {
     constructor() {
         super();
         this.state = {
-            open: false,
+            open: false
             //game stuff, such as this session player, all players, all tokens etc
-            playerList: [
-                {
-                    name: "Melissa",
-                    color: "blue",
-                    score: 4,
-                },
-                {
-                    name: "Dave",
-                    color: "grey",
-                    score: 7,
-                },
-                {
-                    name: "Ruhai",
-                    color: "red",
-                    score: 5,
-                }
-            ],
         }
     }
 
@@ -41,12 +26,12 @@ class GameHUD extends React.Component {
         }
     }
 
-
     render() {
         return (
             <>
                 <React.Fragment key='left'>
                     <Button onClick={this.toggleGameHUD}>
+
                         <ArrowBackIosIcon />
                         Open HUD
                     </Button>
@@ -80,6 +65,7 @@ class GameHUD extends React.Component {
 
                             </List>
                         </div>
+
 
 
                     </Drawer>
