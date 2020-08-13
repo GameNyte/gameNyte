@@ -58,7 +58,7 @@ class Board extends React.Component {
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
-        // this.handleSliderChange = this.handleSliderChange.bind(this);
+        this.handleSliderChange = this.handleSliderChange.bind(this);
     }
 
 
@@ -85,9 +85,10 @@ class Board extends React.Component {
 
     }
 
-    // handleSliderChange = () => {
-    //     this.setState({zoomWrapper.scale: this.state.slider.value})
-    // }
+    handleSliderChange = (newValue) => {
+        this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
+        this.setState({slider: {...this.state.slider, value: newValue}})
+    }
 
     render() {
         const {value, min, step, max} = this.state.slider
@@ -103,24 +104,24 @@ class Board extends React.Component {
                 </div>
                 <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>
                     <Slider
-                        slider={{
-                            value:{value},
-                            min:1,
-                            step:1,
-                            max:6,
-                        }}
-                        // onChange={this.handleSliderChange(value)}
+                        
+                            value={this.state.zoomWrapper.scale}
+                            min={1}
+                            step={1}
+                            max={6}
+                        
+                        onChange={(event, value) => {
+                            this.handleSliderChange(value)}}
                     />
                     <TransformWrapper
                         pan={{
                             disabled: !panningEnabled
                         }}
                         step={1}
+                        scale={this.state.zoomWrapper.scale}
                     >
                         <TransformComponent>
-                            <img onClick={(event) => {
-                                console.log(event.button)
-                            }} src={this.state.maps[0]} />
+                            <img src='https://game-nyte-maps.s3.us-west-2.amazonaws.com/game-1597342051829.gif' />
                             <GameHud />
                             
                             <Token

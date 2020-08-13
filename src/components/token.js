@@ -16,7 +16,10 @@ class Token extends React.Component {
             {this.props.playerList.map((player, idx) => {
                     const color = this.props.playerList[idx].color;
                     return (
-                        <Draggable bounds="parent" {...dragHandlers}>
+                        <Draggable bounds="parent" {...dragHandlers}
+                            onDrag={(element, x, y, event) => {
+                                console.log(x)}}
+                        >
                             <Avatar key={idx} className={`classes.${color}`}> {this.props.playerList[idx].name.split()[0]} </Avatar>
                         </Draggable>
                     )
