@@ -85,10 +85,10 @@ class Board extends React.Component {
         return (
             <>
                 <div>
-                    <Upload
+                    {/* <Upload
                         maps={this.state.maps}
                         handleAwsRes={this.handleAwsRes}
-                    />
+                    /> */}
                 </div>
 
                 <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>

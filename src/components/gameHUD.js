@@ -6,6 +6,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
+import UploadModal from './upload-portal.js';
 
 
 
@@ -31,18 +32,17 @@ class GameHUD extends React.Component {
         console.log('this.props from gameHUD', this.props);
         return (
             <>
+
                 <React.Fragment key='left'>
                     <Button onClick={this.toggleGameHUD}>
-
                         <NightsStayIcon fontSize="large" />
-
                     </Button>
                     <Drawer open={this.state.open}>
                         <Button onClick={this.toggleGameHUD}>
-                            
                             <ArrowForwardIosIcon />
                         </Button>
 
+                        <UploadModal/>
 
 
                         <div>

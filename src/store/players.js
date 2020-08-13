@@ -1,16 +1,25 @@
 const initialState = [{
-  name: "Melissa",
-  color: "blue",
+  name: 'Melissa',
+  room: 'happyDaze',
   score: 0,
+  location: {
+    activeDrags: 0,
+    deltaPosition: {
+      x: 0,
+      y: 0,
+    },
+    controlledPosition: {
+      x: -400,
+      y: 200,
+    }
+  }
 },
 {
   name: "Dave",
-  color: "grey",
   score: 0,
 },
 {
   name: "Ruhai",
-  color: "red",
   score: 0,
 }
 ];
@@ -28,6 +37,9 @@ export default (state = initialState, action) => {
 
     case 'QUIT':
       return initialState;
+
+    case 'UPDATE_LOCATION':
+      return { ...state, } // need to update ALL tokens.player.location - the entire location
 
 
     default:
@@ -48,5 +60,14 @@ export const leavePlayers = (player) => {
   return {
     type: 'QUIT',
     payload: player,
+  }
+}
+
+
+export const updateTokenLocation = (something) => {
+  console.log(something);
+  return {
+    type: 'UPDATE_LOCATION',
+    payload: something,
   }
 }

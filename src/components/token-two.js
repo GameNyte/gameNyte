@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Draggable from 'react-draggable';
+import Draggable, {DraggableCore} from 'react-draggable';
 import { Avatar } from '@material-ui/core';
+import { updateTokenLocation } from '../store/players.js';
 // import '../scss/tokens.scss'
 
 
-const Token = props => {
+const Token = (props) => {
+  console.log('props from token', props);
 
   const [activeDrags, setActiveDrags] = useState(0);
+
   const [deltaPosition, setDeltaPosition] = useState({ x: 0, y: 0 });
-  const [controlledPosition, setControlledPosition] = useState({ x: -400, y: 200 });
+  // const [controlledPosition, setControlledPosition] = useState({ x: -400, y: 200 });
 
 
   // eventLogger = (e: MouseEvent, data: Object) => {
@@ -20,8 +23,7 @@ const Token = props => {
 
   // TODO: defaultPosition property should contain a function that ties the player token to state and our turn-taking functionality || disabled property is a boolean so we can toggle it by state.
   // TODO: When a player's turn ends, we need set the property "axis" to the string of 'none', which stops the piece from moving.
-  // 
-  // render() {
+
 
   const onStart = () => {
     setActiveDrags(activeDrags + 1);
@@ -34,12 +36,13 @@ const Token = props => {
   
   return (
     <>
-      {props.playerList.map((player, idx) => {
+      {props.playerList.length > 0 && props.playerList.map((player, idx) => {
         // const color = this.props.playerList[idx].color;
         return (
           <Draggable bounds="parent" {...dragHandlers}>
-            <Avatar key={idx} className={`classes.orange`}> {props.playerList[idx].name.split('')[0]} </Avatar>
+            <Avatar key={idx} className={`classes.orange`}> {props.playerList[idx].name[0]} </Avatar>
           </Draggable>
+          // <Draggable onDrag={this.handleDrag} {...dragHandlers}>
         )
       })
       }
@@ -52,10 +55,11 @@ const mapStateToProps = state => {
 
   return {
     playerList: state.players,
+    tokens: [...state.players],
   };
 };
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = { updateTokenLocation };
 
 export default connect(
   mapStateToProps,
