@@ -1,5 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
+import {connect} from 'react-redux';
+import {updatePlayers} from '../store/players.js'
+
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
@@ -45,7 +48,7 @@ class Board extends React.Component {
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
-        // this.handleSliderChange = this.handleSliderChange.bind(this);
+        this.handleSliderChange = this.handleSliderChange.bind(this);
     }
 
 
@@ -73,11 +76,13 @@ class Board extends React.Component {
 
     }
 
-    // handleSliderChange = () => {
-    //     this.setState({zoomWrapper.scale: this.state.slider.value})
-    // }
+    handleSliderChange = (newValue) => {
+        this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
+        this.setState({slider: {...this.state.slider, value: newValue}})
+    }
 
     render() {
+        console.log(this.props.players)
         const {value, min, step, max} = this.state.slider
         const {panningEnabled, maxScale, minScale} = this.state.zoomWrapper;
         const { deltaPosition, controlledPosition } = this.state.playerLocation;
@@ -93,30 +98,31 @@ class Board extends React.Component {
 
                 <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>
                     <Slider
-                        slider={{
-                            value:{value},
-                            min:1,
-                            step:1,
-                            max:6,
-                        }}
-                        // onChange={this.handleSliderChange(value)}
+                        
+                            value={this.state.zoomWrapper.scale}
+                            min={1}
+                            step={1}
+                            max={6}
+                        
+                        onChange={(event, value) => {
+                            this.handleSliderChange(value)}}
                     />
                     <TransformWrapper
                         pan={{
                             disabled: !panningEnabled
                         }}
                         step={1}
+                        scale={this.state.zoomWrapper.scale}
                     >
                         <TransformComponent>
+
                             <img onClick={(event) => {
                                 console.log(event.button)
                             }} src={this.state.maps[0]} />
                             
                             <Token />
 
-                            {/* <Token
-                                playerList = {this.state.playerList}
-                            /> */}
+
 
                         </TransformComponent>
                     </TransformWrapper>
@@ -126,16 +132,15 @@ class Board extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
 
+const mapStateToProps = (state) => {
     return {
-        playerList: state.players,
-    };
-};
+        players:state.players
+    }
+}
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+    updatePlayers,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Board);

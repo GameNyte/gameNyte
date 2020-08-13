@@ -6,6 +6,8 @@ import Draggable from 'react-draggable';
 import { Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { deepOrange, deepPurple, lightBlue, red } from '@material-ui/core/colors';
+import {connect} from 'react-redux';
+import {updatePlayers} from '../store/players.js'
 
 // import '../scss/tokens.scss'
 // eventLogger = (e: MouseEvent, data: Object) => {
@@ -39,20 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
-
-
-
-
-
-
-// TODO: defaultPosition property should contain a function that ties the player token to state and our turn-taking functionality || disabled property is a boolean so we can toggle it by state.
-// TODO: When a player's turn ends, we need set the property "axis" to the string of 'none', which stops the piece from moving.
-
 const Token = (props, idx) => {
-
-
 
     const [onStart, onStop] = useState(0);
     const dragHandlers = { onStart: onStart, onStop: onStop };
@@ -88,6 +77,7 @@ const Token = (props, idx) => {
             case '3': return classes.blue;
             case '4': return classes.red;
         }
+
     }
     return (
         <>
@@ -103,16 +93,12 @@ const Token = (props, idx) => {
     );
 }
 
-const mapStateToProps = state => {
 
-    return {
-        playerList: state.players,
-    };
-};
+const mapStateToProps = {
+    socket:props.room.socket,
+}
+const mapDispatchToProps = {
+    updatePlayers,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Token);
 
-const mapDispatchToProps = null;
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Token);
