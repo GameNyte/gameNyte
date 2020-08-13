@@ -6,17 +6,11 @@ import { createRoom, joinRoom, leaveRoom } from '../store/room.js';
 const io = require('socket.io-client');
 
 
-
-
-
-
-
-
 const Room = (props) => {
 
   const [input, setInput] = useState('');
 
-  const socket = io('http://localhost:3001');
+  const socket = io('http://localhost:3000');
   
   socket.on('new-room', (results) => {
     console.log('new room results: ', results);
