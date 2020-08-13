@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { AppBar, Typography, IconButton, Icon} from '@material-ui/core';
-import NightsStayIcon from '@material-ui/icons/NightsStay';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginBanner from './login-banner.js'
 // import GameHUD from './gameHUD.js'
@@ -38,7 +37,8 @@ const Header = (props) => {
       <div className={classes.header}>
         <div className={classes.title}>
       <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-      <NightsStayIcon fontSize="large"/>
+
+        <GameHUD />
     </IconButton>
         <Typography style={{fontSize:32}}className={classes.title} component="h1">Game Nyte</Typography>
         </div>

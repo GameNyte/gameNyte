@@ -1,6 +1,8 @@
+
 const initialState = [ 
   {name: 'bob'},
   {name: 'carl'}
+
 ];
 
 
@@ -15,6 +17,7 @@ export default (state = initialState, action) => {
       return [payload];
 
     case 'QUIT':
+
       return initialState;  
     
     case 'UPDATE': 
@@ -24,6 +27,7 @@ export default (state = initialState, action) => {
         }
         return player
       });
+
 
     default:
       return state;
@@ -46,9 +50,11 @@ export const leavePlayers = (player) => {
   }
 }
 
+
 export const updatePlayers = (player) => {
   return {
     type: 'UPDATE',
     payload: player,
   }
 }
+

@@ -1,22 +1,25 @@
 import React from 'react';
+
 import {connect} from 'react-redux';
 import {updatePlayers} from '../store/players.js'
+
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
 
 import Player from './player.js';
-// import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
-import Token from './token.js'
+// import Token from './token.js'
+import Token from './token-two.js'
+
 
 
 
 class Board extends React.Component {
-    constructor() {
-        super();
-        this.state = {
+    constructor(props) {
+        super(props);
+        this.state = {  
             maps: [],
             playerLocation: {
                 activeDrags: 0,
@@ -26,7 +29,6 @@ class Board extends React.Component {
                 controlledPosition: {
                     x: -400, y: 200
                 }
-
             },
             zoomWrapper: {
                 panningEnabled: false,
@@ -88,10 +90,10 @@ class Board extends React.Component {
         return (
             <>
                 <div>
-                    <Upload
+                    {/* <Upload
                         maps={this.state.maps}
                         handleAwsRes={this.handleAwsRes}
-                    />
+                    /> */}
                 </div>
 
                 <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>
@@ -113,12 +115,14 @@ class Board extends React.Component {
                         scale={this.state.zoomWrapper.scale}
                     >
                         <TransformComponent>
-                            <img src='https://game-nyte-maps.s3.us-west-2.amazonaws.com/game-1597342051829.gif' />
-                            {/* <GameHud /> */}
+
+                            <img onClick={(event) => {
+                                console.log(event.button)
+                            }} src={this.state.maps[0]} />
                             
-                            <Token
-                                playerList = {this.props.players}
-                            />
+                            <Token />
+
+
 
                         </TransformComponent>
                     </TransformWrapper>
@@ -127,6 +131,7 @@ class Board extends React.Component {
         );
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {
@@ -138,3 +143,4 @@ const mapDispatchToProps = {
     updatePlayers,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
+

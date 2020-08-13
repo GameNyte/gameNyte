@@ -1,16 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Avatar, Drawer, Button, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
+import UploadModal from './upload-portal.js';
 
 
 
 class GameHUD extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             open: false
             //game stuff, such as this session player, all players, all tokens etc
@@ -27,25 +29,27 @@ class GameHUD extends React.Component {
     }
 
     render() {
+        console.log('this.props from gameHUD', this.props);
         return (
             <>
+
                 <React.Fragment key='left'>
                     <Button onClick={this.toggleGameHUD}>
-
-                        <ArrowBackIosIcon />
-                        Open HUD
+                        <NightsStayIcon fontSize="large" />
                     </Button>
                     <Drawer open={this.state.open}>
                         <Button onClick={this.toggleGameHUD}>
-                            Close HUD
                             <ArrowForwardIosIcon />
                         </Button>
 
+                        <UploadModal/>
 
 
                         <div>
                             <List>
-                                {this.props.playerList.map((player, idx) => {
+
+                                {this.props.playerList.length > 0 && this.props.playerList.map((player, idx) => {
+
                                     return (
                                         <ListItem id={idx} backgroundColor="red">
                                             <ListItemAvatar>
@@ -62,7 +66,6 @@ class GameHUD extends React.Component {
                                         </ListItem>
                                     )
                                 })}
-
                             </List>
                         </div>
 
@@ -80,4 +83,16 @@ class GameHUD extends React.Component {
 //     // logic to control prop "open" for MatUI component "Drawer" goes here?
 // }
 
-export default GameHUD;
+const mapStateToProps = state => {
+
+    return {
+        playerList: state.players,
+    };
+};
+
+const mapDispatchToProps = null;
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(GameHUD);
