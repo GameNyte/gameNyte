@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
+
 import { Button, TextField, Paper, Typography, List, ListItem } from '@material-ui/core';
 import { connect } from 'react-redux';
+
 
 
 
@@ -80,11 +83,13 @@ const Chat = (props) => {
         Send
       </Button>
       </form>
+
         <Paper className={classes.view}>
           <Typography >Message Archive</Typography>
         <List >{messageArchive.map((data, idx) => <ListItem key={idx}>{data}</ListItem>)}</List>
         </Paper>
         </div>
+
     </>
 
 
