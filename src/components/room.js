@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { createRoom, joinRoom, leaveRoom, connectSocket } from '../store/room.js';
+import { createPlayers, leavePlayers } from '../store/players.js';
+
 
 
 const Room = (props) => {
-
   
 
   const [input, setInput] = useState('');
   
-
   
   useEffect(() => {  
     props.connectSocket();    
@@ -18,21 +18,45 @@ const Room = (props) => {
 , []);
 
 
+useEffect(() => { 
+  if (Object.keys(props.socket).length) {
+  addPlayer();
+  console.log(props.room);
+  }
+}
+, [props.room.room]);
+
+
+
 if (Object.keys(props.socket).length) {
+
+  
+
   props.socket.on('new-room', (results) => {
-    console.log('new room results: ', results);
     props.createRoom(results);
+  })
+  
+  props.socket.on('update-players', (results) => {
+    props.createPlayers(results);
   })
 };
 
-  function makeRoom() {
-    console.log('createRoom from client running');
-    props.socket.emit('createRoom');
+  function addPlayer() {
+    
+    const player = {
+      'name': props.user,
+      'room': props.room.room,
+    }
+    props.socket.emit('player', player);
+
   }
 
-  function enterRoom() {
-    console.log('input from enterRoom: ', input);
-    
+
+  function makeRoom() {  
+    props.socket.emit('createRoom');  
+  }
+
+  function enterRoom() {    
     props.socket.emit('join', input);
     props.joinRoom(input);
     setInput('');
@@ -41,13 +65,14 @@ if (Object.keys(props.socket).length) {
   function exitRoom() {  
     props.socket.emit('leave', props.room.room);
     props.leaveRoom();
+    props.leavePlayers();
     
   }
 
 
   return (
     <>
-      <Button
+    <Button
         onClick={(e) => { 
           e.preventDefault();
           makeRoom();          
@@ -84,11 +109,13 @@ const mapStateToProps = state => {
 
   return {
     room: state.room,
-    socket: state.room.socket,        
+    socket: state.room.socket,
+    user: state.login.userInfo.username, 
+    players: state.players       
   };
 };
 
-const mapDispatchToProps = { createRoom, joinRoom, leaveRoom, connectSocket };
+const mapDispatchToProps = { createRoom, joinRoom, leaveRoom, connectSocket, createPlayers, leavePlayers };
 
 
 export default connect(
