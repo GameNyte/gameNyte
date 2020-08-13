@@ -45,7 +45,7 @@ class GameHUD extends React.Component {
 
                         <div>
                             <List>
-                                {this.state.playerList.map((player, idx) => {
+                                {this.props.playerList.map((player, idx) => {
                                     return (
                                         <ListItem id={idx} backgroundColor="red">
                                             <ListItemAvatar>

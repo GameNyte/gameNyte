@@ -1,10 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {updatePlayers} from '../store/players.js'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
 
 import Player from './player.js';
-import GameHud from './gameHUD.js';
+// import GameHud from './gameHUD.js';
 import Upload from './upload.js'
 import Draggable from 'react-draggable';
 import Token from './token.js'
@@ -33,23 +35,6 @@ class Board extends React.Component {
                 step: 1,
                 scale: 1,
             },
-            playerList: [
-                {
-                    name: "Melissa",
-                    color: "blue",
-                    score: 0,
-                },
-                {
-                    name: "Dave",
-                    color: "grey",
-                    score: 0,
-                },
-                {
-                    name: "Ruhai",
-                    color: "red",
-                    score: 0,
-                }
-            ],
             slider: {
                 value: 1,
                 min: 0,
@@ -95,6 +80,7 @@ class Board extends React.Component {
     }
 
     render() {
+        console.log(this.props.players)
         const {value, min, step, max} = this.state.slider
         const {panningEnabled, maxScale, minScale} = this.state.zoomWrapper;
         const { deltaPosition, controlledPosition } = this.state.playerLocation;
@@ -128,10 +114,10 @@ class Board extends React.Component {
                     >
                         <TransformComponent>
                             <img src='https://game-nyte-maps.s3.us-west-2.amazonaws.com/game-1597342051829.gif' />
-                            <GameHud />
+                            {/* <GameHud /> */}
                             
                             <Token
-                                playerList = {this.state.playerList}
+                                playerList = {this.props.players}
                             />
 
                         </TransformComponent>
@@ -142,4 +128,13 @@ class Board extends React.Component {
     }
 }
 
-export default Board;
+const mapStateToProps = (state) => {
+    return {
+        players:state.players
+    }
+}
+
+const mapDispatchToProps = {
+    updatePlayers,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

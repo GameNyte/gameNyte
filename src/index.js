@@ -36,7 +36,7 @@ const App = () => {
     <Header />
     <div className={classes.root}>
     <Room className={classes.roomModule}/>
-    {/* <Board /> */}
+    <Board />
     <Chat />
     </div>
   </Provider>

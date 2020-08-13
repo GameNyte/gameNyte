@@ -1,6 +1,8 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 import { Avatar } from '@material-ui/core';
+import {connect} from 'react-redux';
+import {updatePlayers} from '../store/players.js'
 // import '../scss/tokens.scss'
 class Token extends React.Component {
     // eventLogger = (e: MouseEvent, data: Object) => {
@@ -17,8 +19,8 @@ class Token extends React.Component {
                     const color = this.props.playerList[idx].color;
                     return (
                         <Draggable bounds="parent" {...dragHandlers}
-                            onDrag={(element, x, y, event) => {
-                                console.log(x)}}
+                        onDrag={(element, x, y, event) => {
+                                this.props.updatePlayers([x.x, x.y, player])}}
                         >
                             <Avatar key={idx} className={`classes.${color}`}> {this.props.playerList[idx].name.split()[0]} </Avatar>
                         </Draggable>
@@ -29,4 +31,11 @@ class Token extends React.Component {
         );
     }
 }
-export default Token;
+
+const mapStateToProps = {
+    socket:props.room.socket,
+}
+const mapDispatchToProps = {
+    updatePlayers,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Token);
