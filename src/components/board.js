@@ -17,21 +17,21 @@ class Board extends React.Component {
                 controlledPosition: {
                     x: -400, y: 200
                 }
-            }, 
+            },
             playerList: [
                 {
+                    idx: '1',
                     name: "Melissa",
-                    color: "blue",
                     score: 0,
                 },
                 {
+                    idx: '2',
                     name: "Dave",
-                    color: "grey",
                     score: 0,
                 },
                 {
+                    idx: '3',
                     name: "Ruhai",
-                    color: "red",
                     score: 0,
                 }
             ],
@@ -41,7 +41,6 @@ class Board extends React.Component {
         this.onStop = this.onStop.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
     }
-
 
     handleDrag = (e, ui) => {
         const { x, y } = this.state.deltaPosition;

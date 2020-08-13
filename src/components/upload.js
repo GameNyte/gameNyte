@@ -91,9 +91,10 @@ class Upload extends Component {
          </div>
         </div>
        </div>
-  </div>
+    </div>
      </div>
     );
    }
-  }
-  export default Upload;
+}
+
+export default Upload;
