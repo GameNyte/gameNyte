@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
     flexDirection:'column',
     alignItems:'center',
+    textAlign: 'center',
     justifyContent:'center',
   },
   formHeader:{
@@ -62,7 +63,7 @@ const SimpleModal = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const [username, setUsername] = useState('');
-
+  const [password, setPassword] = useState('');
 
   const handleOpen = () => {
   setOpen(true);
@@ -72,14 +73,16 @@ const SimpleModal = (props) => {
     setOpen(false);
   };
 
+  
+
  
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div className={classes.form} >
         <div className={classes.formHeader}>
-      <h2 id="simple-modal-title">Login or create account</h2>
+      <h2 id="simple-modal-title">Welcome to Game Nyte!</h2>
       <p id="simple-modal-description">
-        Welcome to Game Nyte!
+        Log in with Discord or create your own account.
       </p>
 
       <a href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&response_type=code&scope=identify">
@@ -93,20 +96,23 @@ const SimpleModal = (props) => {
         props.createAccount(e)} 
       }
         className={classes.formRoot} noValidate autoComplete="off">
-      <FormLabel component="legend">Create Account</FormLabel>
-        <TextField name="username" value="" id="filled-basic" label="User Name" variant="filled" onChange={
+      <FormLabel component="legend">Create Account/Login</FormLabel>
+        <TextField name="username" value={username} id="filled-basic" label="User Name" variant="filled" onChange={
           (e) => {
-            
-            // handleChange(e);
+            setUsername(e.target.value);
           }
         }/>
-        <TextField name="password" value="" id="filled-basic" label="Password" variant="filled" onChange={
+        <TextField name="password" value={password} id="filled-basic" label="Password" variant="filled" onChange={
           (e) => {
         
-            // handleChange(e);
+            setPassword(e.target.value);
           }
         }/>
-        <Button type="submit"  color="primary">Create Account</Button>
+        <Button onClick={(e) => {
+          e.preventDefault();
+          props.login({username, password}); 
+          handleClose();         
+           }}  type="submit"  color="primary">Submit</Button>
         
 
       </form>
