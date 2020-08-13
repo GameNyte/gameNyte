@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the Header renders correctly 1`] = `
+<div
+  className="makeStyles-header-1"
+>
+  <header
+    className="MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4"
+  >
+    <h1
+      className="MuiTypography-root makeStyles-title-2 MuiTypography-body1"
+    >
+      Game Nyte
+    </h1>
+    <div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Open Modal
+      </button>
+    </div>
+  </header>
+</div>
+`;
