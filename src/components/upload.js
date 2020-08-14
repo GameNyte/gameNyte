@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import upload from '../store/upload.js';
 
 class Upload extends Component {
   constructor(props) {
@@ -59,7 +61,7 @@ class Upload extends Component {
          let fileName = response.data;
          console.log( 'fileName', fileName );
          alert( 'File Uploaded', '#3089cf' );
-         this.props.handleAwsRes(fileName)
+         this.props.handleAwsRes(fileName.locationArray[0])
   }
        }
       })
@@ -96,4 +98,12 @@ class Upload extends Component {
     );
    }
   }
-  export default Upload;
+
+  const mapStateToProps = null;
+
+  const mapDispatchToProps = null;
+
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Upload);
