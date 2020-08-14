@@ -35,14 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-
-
 const Room = (props) => {
   const classes = useStyles();
 
   const [input, setInput] = useState('');
-
 
   useEffect(() => {
     props.connectSocket();
@@ -52,10 +48,8 @@ const Room = (props) => {
   useEffect(() => {
     if (Object.keys(props.socket).length) {
       addPlayer();
-      console.log(props.room);
     }
-  }
-    , [props.room.room]);
+  }, [props.room.room]);
 
 
   if (Object.keys(props.socket).length) {
@@ -84,8 +78,8 @@ const Room = (props) => {
           'y': 0,
         },
         'controlledPosition': {
-          'x': -400,
-          'y': 200,
+          'x': 0,
+          'y': 0,
         }
       }
     }
@@ -141,7 +135,6 @@ const Room = (props) => {
             <TextField placeholder="Room ID" value={input} label="Room" onChange={
               (e) => {
                 setInput(e.target.value);
-                console.log(input);
               }
             }></TextField>
             <Button

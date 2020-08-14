@@ -15,7 +15,6 @@ class GameHUD extends React.Component {
         super(props);
         this.state = {
             open: false
-            //game stuff, such as this session player, all players, all tokens etc
         }
     }
 
@@ -78,10 +77,6 @@ class GameHUD extends React.Component {
     }
 }
 
-// const HUD = (props) => {
-//     //TODO: design the actual HUD interface according to our UML.
-//     // logic to control prop "open" for MatUI component "Drawer" goes here?
-// }
 
 const mapStateToProps = state => {
 
