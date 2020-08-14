@@ -45,9 +45,6 @@ const SimpleModal = (props) => {
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
     const handleOpen = () => {
         setOpen(true);
     };
@@ -56,13 +53,13 @@ const SimpleModal = (props) => {
         setOpen(false);
     };
 
-
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <h2 id="simple-modal-title">Board Portal</h2>
             <p id="simple-modal-description">
                 Upload A Board to Play On!
             </p>
+            <Upload/>
         </div>
     );
 
@@ -91,7 +88,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = { createAccount, login };
-
 
 export default connect(
     mapStateToProps,

@@ -58,7 +58,7 @@ export default function Token(idx) {
             {this.props.playerList.map((player, idx) => {
                 return (
                     <Draggable bounds="parent" className={classes.root} {...dragHandlers}>
-                        <Avatar key={idx} className={playerColor(idx)}> {this.props.playerList[idx].name.split('')[0]} </Avatar>
+                        <Avatar key={idx} className={playerColor(idx)}> {player.name.split('')[0]} </Avatar>
                     </Draggable>
                 )
             })
