@@ -37,7 +37,7 @@ const Header = (props) => {
         <div className={classes.title}>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 
-            {/* <GameHUD /> */}
+            <GameHUD />
           </IconButton>
           <Typography style={{ fontSize: 32 }} className={classes.title} component="h1">Game Nyte</Typography>
         </div>
