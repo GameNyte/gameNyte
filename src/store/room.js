@@ -41,7 +41,7 @@ export const createRoom = (room) => {
 export const connectSocket = () => {
   return {
     type: 'CONNECT',
-    payload: 'http://localhost:3000',
+    payload: 'https://gamenyte-server.herokuapp.com/',
   }
 }
 

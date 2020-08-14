@@ -112,14 +112,11 @@ class Board extends React.Component {
                     >
                         <TransformComponent>
 
-                            <img src={this.state.maps[0]} />
+                            <img src='https://www.readersdigest.ca/wp-content/uploads/2019/07/anger-stress-ball.jpg' />
 
                             
                             <Token />
 
-                            {/* <Token
-                                playerList = {this.state.playerList}
-                            /> */}
 
                         </TransformComponent>
                     </TransformWrapper>

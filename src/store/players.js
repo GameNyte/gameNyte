@@ -1,28 +1,5 @@
-const initialState = [{
-  name: 'Melissa',
-  room: 'happyDaze',
-  score: 0,
-  location: {
-    activeDrags: 0,
-    deltaPosition: {
-      x: 0,
-      y: 0,
-    },
-    controlledPosition: {
-      x: -400,
-      y: 200,
-    }
-  }
-},
-{
-  name: "Dave",
-  score: 0,
-},
-{
-  name: "Ruhai",
-  score: 0,
-}
-];
+const initialState = [];
+
 
 
 export default (state = initialState, action) => {
@@ -33,13 +10,13 @@ export default (state = initialState, action) => {
 
 
     case 'ADD':
-      return [payload];
+      return payload;
 
     case 'QUIT':
       return initialState;
 
-    case 'UPDATE_LOCATION':
-      return { ...state, } // need to update ALL tokens.player.location - the entire location
+    case 'UPDATE':
+      // return {...state, state[payload.name]:{'x':payload.x, 'y':payload.y}}
 
 
     default:
@@ -64,10 +41,10 @@ export const leavePlayers = (player) => {
 }
 
 
-export const updateTokenLocation = (something) => {
-  console.log(something);
+export const updateTokenLocation = (player, x) => {
+  const location = { 'name': player.name, 'x': x.x, 'y': x.y}
   return {
-    type: 'UPDATE_LOCATION',
-    payload: something,
+    type: 'UPDATE',
+    payload: location, 
   }
 }
