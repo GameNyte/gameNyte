@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { createAccount, login } from '../store/login.js';
 import FaceIcon from '@material-ui/icons/Face';
 
-
-// import useForm from '../hooks/use-form.js';
-
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -58,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SimpleModal = (props) => {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
 
@@ -85,8 +81,8 @@ const SimpleModal = (props) => {
         Log in with Discord or create your own account.
       </p>
 
-      <a href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth&response_type=code&scope=identify">
-      <img src="https://img.icons8.com/clouds/100/000000/discord-logo.png"/>
+      <a href="https://discord.com/api/oauth2/authorize?client_id=742459492511252501&redirect_uri=https%3A%2F%2Fgamenyte-server.herokuapp.com%2Foauth&response_type=code&scope=identify">
+      <img alt="discord" src="https://img.icons8.com/clouds/100/000000/discord-logo.png"/>
         </a>
   
         </div>

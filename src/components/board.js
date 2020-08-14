@@ -2,12 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
-
-
-import Player from './player.js';
-import Upload from './upload.js'
-import Draggable from 'react-draggable';
-// import Token from './token.js'
 import Token from './token-two.js'
 
 
@@ -41,37 +35,12 @@ class Board extends React.Component {
                 max: 6,
             }
         }
-        // this.handleAwsRes = this.handleAwsRes.bind(this);
-        this.onStart = this.onStart.bind(this);
-        this.onStop = this.onStop.bind(this);
-        this.handleDrag = this.handleDrag.bind(this);
+        
         this.handleSliderChange = this.handleSliderChange.bind(this);
     }
 
 
-    handleDrag = (e, ui) => {
-        const { x, y } = this.state.deltaPosition;
-        this.setState({
-            deltaPosition: {
-                x: x + ui.deltaX,
-                y: y + ui.deltaY,
-            }
-        });
-    };
 
-    onStart = () => {
-        this.setState({ activeDrags: ++this.state.activeDrags });
-    };
-
-    onStop = () => {
-        this.setState({ activeDrags: --this.state.activeDrags });
-    };
-
-    // handleAwsRes = (fileName) => {
-
-    //     this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
-
-    // }
 
     handleSliderChange = (newValue) => {
         this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
@@ -79,20 +48,14 @@ class Board extends React.Component {
     }
 
     render() {
-        const {value, min, step, max} = this.state.slider
-        const {panningEnabled, maxScale, minScale} = this.state.zoomWrapper;
-        const { deltaPosition, controlledPosition } = this.state.playerLocation;
+        
+        const {panningEnabled} = this.state.zoomWrapper;
+        
 
         return (
             <>
-                <div>
-                    {/* <Upload
-                        maps={this.state.maps}
-                        handleAwsRes={this.handleAwsRes}
-                    /> */}
-                </div>
 
-                <div className="board" style={{ position: 'fixed', height: '500px', width: '500px', position: 'relative', overflow: 'auto', padding: '0' }}>
+                <div className="board">
                     <Slider
                         
                             value={this.state.zoomWrapper.scale}
@@ -112,7 +75,7 @@ class Board extends React.Component {
                     >
                         <TransformComponent>
 
-                            <img src='https://www.readersdigest.ca/wp-content/uploads/2019/07/anger-stress-ball.jpg' />
+                            <img alt="board" src={this.props.upload[0]} />
 
                             
                             <Token />
@@ -130,6 +93,7 @@ const mapStateToProps = state => {
 
     return {
         playerList: state.players,
+        upload: state.upload,
     };
 };
 

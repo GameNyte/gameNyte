@@ -20,9 +20,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems:'flex-start',
     justifyContent:'space-between',
   },
-  roomModule: {
-
-  }
 }));
 
 
@@ -35,7 +32,7 @@ const App = () => {
   <Provider store={store}>
     <Header />
     <div className={classes.root}>
-    <Room className={classes.roomModule}/>
+    <Room />
     <Board />
     <Chat />
     </div>

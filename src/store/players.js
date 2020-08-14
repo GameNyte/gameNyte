@@ -3,11 +3,10 @@ const initialState = [];
 
 
 export default (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload } = action;  
 
 
   switch (type) {
-
 
     case 'ADD':
       return payload;
@@ -15,8 +14,14 @@ export default (state = initialState, action) => {
     case 'QUIT':
       return initialState;
 
-    case 'UPDATE':
-      // return {...state, state[payload.name]:{'x':payload.x, 'y':payload.y}}
+    case 'UPDATE_LOCATION':      
+    
+      return state.map((player, idx) => {
+        if(player.name === payload.name)  {
+          return payload 
+        }
+        return player
+      });
 
 
     default:
@@ -41,10 +46,9 @@ export const leavePlayers = (player) => {
 }
 
 
-export const updateTokenLocation = (player, x) => {
-  const location = { 'name': player.name, 'x': x.x, 'y': x.y}
+export const updateTokenLocation = (player) => {
   return {
-    type: 'UPDATE',
-    payload: location, 
+    type: 'UPDATE_LOCATION',
+    payload: player, 
   }
 }

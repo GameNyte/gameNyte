@@ -1,11 +1,11 @@
 # Game Nyte
-![logo](/assets/gameNyte_logo.svg)
+![logo](./src/assets/gameNyte_logo.png)
 
 
 Group Final project for Code Fellows Advanced Javascript
 
 ## Live deployment
-Check out our app out in the wild [here](fill)! 
+Check out our app out in the wild [here](https://master.djnfqbxtyrn7f.amplifyapp.com/)! 
 
 <hr>
 
@@ -43,10 +43,6 @@ This app will perfectly simulate an in person “dinner table” style game sess
 <hr>
 
 
-[Return to the top](#Table-of-Contents)
-
-<hr>
-
 ## Getting Started
 This project is licensed under the free MIT license. As such, if you are interested in getting a version of this project locally for testing or added development, here are the steps needed to get started:
 1. Prerequisites:
@@ -65,22 +61,58 @@ This project is licensed under the free MIT license. As such, if you are interes
     - Follow the prompts to fill out the `package.json` file that `node.js` will pull from to run the server.
         - <ins>**Important!**</ins> Ensure that your `package.json` has `server.js` listed under the `start` parameter!
     - Install these libraries from npm that are used on this project with the `npm install` command on your CLI (more info below):
-     - "base-64": "^0.1.0",
-     - "bcrypt": "^5.0.0",
-     - "cors": "^2.8.5",
-     - "dotenv": "^8.2.0",
-     - "express": "^4.17.1",
-     - "faker": "^4.1.0",
-     - "fs": "0.0.1-security",
-     - "http": "0.0.1-security",
-     - "jest": "^26.3.0",
-     - "jsonwebtoken": "^8.5.1",
-     - "mongoose": "^5.9.28",
-     - "multer": "^1.4.2",
-     - "multer-s3": "^2.9.0",
-     - "path": "^0.12.7",
-     - "socket.io": "^2.3.0",
-     - "superagent": "^6.0.0"
+
+    "@material-ui/core": "^4.11.0"
+
+    "@material-ui/icons": "^4.9.1"
+
+    "axios": "^0.19.2"
+
+    "cors": "^2.8.5"
+
+    "fs": "0.0.1-security"
+
+    "jsonwebtoken": "^8.5.1"
+
+    "node-sass": "^4.14.1"
+
+    "path": "^0.12.7"
+
+    "react": "^16.13.1"
+
+    "react-dom": "^16.13.1"
+
+    "react-draggable": "^4.4.3"
+
+    "react-redux": "^7.2.1"
+
+    "react-router-dom": "^5.2.0"
+
+    "react-scripts": "^3.4.3"
+
+    "react-zoom-pan-pinch": "^1.6.1"
+
+    "redux": "^4.0.5"
+
+    "redux-devtools-extension": "^2.13.8"
+
+    "redux-thunk": "^2.3.0"
+
+    "socket.io": "^2.3.0"
+
+    "socket.io-client": "^2.3.0"
+
+    "socket.io-mock": "^1.3.1" 
+
+    "enzyme": "^3.11.0"
+
+    "enzyme-adapter-react-16": "^1.15.3"
+
+    "eslint-plugin-react": "^7.20.5"
+
+    "react-test-renderer": "^16.13.1"
+  
+
 
 4. You should now have a full copy of this project on your local machine. If you would like to contribute to this project in any way, checkout the [Contributing](#Contributing) section below! 
 
@@ -100,21 +132,18 @@ This project is licensed under the free MIT license. As such, if you are interes
 - [Base64](https://www.npmjs.com/package/base-64) Base64 is a robust base64 encoder/decoder 
 - [BCrypt](https://www.npmjs.com/package/bcrypt) A library to help you hash passwords 
 - [Jest](https://jestjs.io/) Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
-[JSONWebToken](https://jwt.io/introduction/) JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. 
-[Multr](https://github.com/expressjs/multer) Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
-[Faker](https://github.com/Marak/Faker.js#readme) faker.js contains a super useful generator method Faker.fake for combining faker API methods using a mustache string format.
-[RPG Dice Roller](https://greenimp.github.io/rpg-dice-roller/guide/#how-it-works) This library is a JS based dice roller that can roll various types of dice and modifiers, along with mathematical equations.
-[React](https://reactjs.org/) React is a JavaScript library for building user interfaces. Learn what React is all about on our homepage or in the tutorial.
-[Redux](https://redux.js.org/) Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.
-[Material UI](https://material-ui.com/) React components for faster and easier web development. Build your own design system, or start with Material Design.
-
-
+- [JSONWebToken](https://jwt.io/introduction/) JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. 
+- [Faker](https://github.com/Marak/Faker.js#readme) faker.js contains a super useful generator method Faker.fake for combining faker API methods using a mustache string format.
+- [RPG Dice Roller](https://greenimp.github.io/rpg-dice-roller/guide/#how-it-works) This library is a JS based dice roller that can roll various types of dice and modifiers, along with mathematical equations.
+- [React](https://reactjs.org/) React is a JavaScript library for building user interfaces. Learn what React is all about on our homepage or in the tutorial.
+- [Redux](https://redux.js.org/) Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.
+- [Material UI](https://material-ui.com/) React components for faster and easier web development. Build your own design system, or start with Material Design.
 
 
 ### APIs
 - Custom Game Servers that pass through state information via socket.io to multiple clients in the same room. 
 
-Utilizing a modularized express router and socket.io connector, wee are able to update state data in real time to verified, signed-in users attached to the same room. 
+Utilizing a modularized express router and socket.io connector, we are able to update state data in real time to verified, signed-in users attached to the same room. 
 
 #### /Users
   - An authorized api route for protected user data
@@ -144,7 +173,7 @@ Utilizing a modularized express router and socket.io connector, wee are able to 
 - As a user, I want to be able to use text commands that will generate a random dice roll.
   - We have the ability to create any chat commands that we feel are pertinent to game mechanics and have them respond in the messages archive
 - As a user I would like to roll a variety of dice styles
-  - Utilizing RPG Dice Roller we can accomodate any kind of dice roll a game might need
+  - Utilizing RPG Dice Roller we can accommodate any kind of dice roll a game might need
 - Stretch: As a user, I want to be able to zoom in and zoom out of the game board.
 - As a host user, I want to be able to save my game board visuals for easy access.
   - Utilizing AWS, we can store and load a game board image customized to the room
@@ -164,12 +193,13 @@ Utilizing a modularized express router and socket.io connector, wee are able to 
 <hr>
 
 ## Domain Modeling: 
+![img](./src/assets/Board_Game_MVP_ideas.jpg)
 
-### Compenent Model
+### Component Model
 
 This diagram is a visual representation of the data structure for this project.
 
-![img](/assets/gameNyte_wireframe-02.jpg)
+![img](./src/assets/gameNyte_wireframe-02.jpg)
 
 
 [Return to the top](#Table-of-Contents)
@@ -178,7 +208,7 @@ This diagram is a visual representation of the data structure for this project.
 
 ## Contributing
 
-If you would like to contribute to this project, open up an issue on the project's [GitHub](https://github.com/Racial-Equity-Habit-Builder/REHB).
+If you would like to contribute to this project, open up an issue on the project's [GitHub](https://github.com/GameNyte).
 - Use the `bug` flag for any problems using the application.
 - Use the `enhancement` flag if you have a recommendation on something to improve
 - Use the `question` flag if you simply have questions about the development of this project.
@@ -192,7 +222,7 @@ If you would like to contribute to this project, open up an issue on the project
 * Dave Wolf - Full-stack Javascript Developer [GitHub](https://github.com/d-d-wolfe)
 * David Palagashvili - Full-stack Javascript Developer [GitHub](https://github.com/Davidoffili)
 * Paul Depew - Full-stack Javascript Developer [GitHub](https://github.com/PaulDepew)
-* Marlene Rinkler - Full-stack Javascript Developer [GitHub](https://github.com/https://github.com/marlene-rinker)
+* Marlene Rinker - Full-stack Javascript Developer [GitHub](https://github.com/https://github.com/marlene-rinker)
 * Garhett Morgan - Full-stack Javascript Developer [GitHub](https://github.com/GarhettM)
 *  Ashley Biermann - Full-stack Javascript Developer [GitHub](https://github.com/ashleybiermann)
 
@@ -202,7 +232,7 @@ If you would like to contribute to this project, open up an issue on the project
 
 ## Acknowledgements
 
-This section goes out to 
+This section goes out to Jacob Knaack.
 
 [Return to the top](#Table-of-Contents)
 
