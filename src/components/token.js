@@ -78,6 +78,7 @@ const Token = (props, idx) => {
             case '4': return classes.red;
         }
 
+
     }
     return (
         <>

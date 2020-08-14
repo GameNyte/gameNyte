@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { makeStyles, Modal, TextField, FormLabel, Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { createAccount, login } from '../store/login.js';
 import Upload from './upload.js';
 // import useForm from '../hooks/use-form.js';
+import handleAwsRes from '../store/upload.js';
+
+
 function rand() {
     return Math.round(Math.random() * 20) - 10;
 }
@@ -34,27 +36,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 const SimpleModal = (props) => {
     const classes = useStyles();
-    // getModalStyle is not a pure function, we roll the style only on the first render
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
+
+
+
     const handleOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
     };
+
+
+    // handleAwsRes = (fileName) => {
+    //     this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
+    // }
+
+
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <h2 id="simple-modal-title">Board Portal</h2>
             <p id="simple-modal-description">
                 Upload A Board to Play On!
             </p>
-            <Upload/>
+
+            <Upload
+                maps={props.maps}
+                handleAwsRes={props.handleAwsRes}
+            />
+
         </div>
     );
     return (
         <div>
             <button type="button" onClick={handleOpen}>
+                Upload A Board!
             </button>
             <Modal
                 open={open}
@@ -69,10 +86,11 @@ const SimpleModal = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        userInfo: state.login,
+        maps: state.maps,
     };
 };
-const mapDispatchToProps = { createAccount, login };
+const mapDispatchToProps = { handleAwsRes };
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps,

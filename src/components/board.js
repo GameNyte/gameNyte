@@ -44,7 +44,7 @@ class Board extends React.Component {
                 max: 6,
             }
         }
-        this.handleAwsRes = this.handleAwsRes.bind(this);
+        // this.handleAwsRes = this.handleAwsRes.bind(this);
         this.onStart = this.onStart.bind(this);
         this.onStop = this.onStop.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
@@ -70,11 +70,18 @@ class Board extends React.Component {
         this.setState({ activeDrags: --this.state.activeDrags });
     };
 
-    handleAwsRes = (fileName) => {
+    // handleAwsRes = (fileName) => {
 
-        this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
+    //     this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
+
 
     }
+
+    handleSliderChange = (newValue) => {
+        this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
+        this.setState({slider: {...this.state.slider, value: newValue}})
+    }
+
 
     handleSliderChange = (newValue) => {
         this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
@@ -116,9 +123,10 @@ class Board extends React.Component {
                     >
                         <TransformComponent>
 
-                            <img onClick={(event) => {
-                                console.log(event.button)
-                            }} src={this.state.maps[0]} />
+
+                            <img src={this.state.maps[0]} />
+
+
                             
                             <Token />
 
