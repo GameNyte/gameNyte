@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { makeStyles, Modal, TextField, FormLabel, Button } from '@material-ui/core';
+import React from 'react';
+import { makeStyles, Modal } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Upload from './upload.js';
-// import useForm from '../hooks/use-form.js';
 import handleAwsRes from '../store/upload.js';
 
 
@@ -48,10 +47,6 @@ const SimpleModal = (props) => {
         setOpen(false);
     };
 
-
-    // handleAwsRes = (fileName) => {
-    //     this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
-    // }
 
 
     const body = (
