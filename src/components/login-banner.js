@@ -96,7 +96,7 @@ const SimpleModal = (props) => {
         props.createAccount(e)} 
       }
         className={classes.formRoot} noValidate autoComplete="off">
-      <FormLabel component="legend">Create Account/Login</FormLabel>
+      <FormLabel component="legend">Create Account/Log In</FormLabel>
         <TextField name="username" value={username} id="filled-basic" label="User Name" variant="filled" onChange={
           (e) => {
             setUsername(e.target.value);
