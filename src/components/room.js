@@ -34,9 +34,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
+
+
+
 const Room = (props) => {
   const classes = useStyles();
-
 
   const [input, setInput] = useState('');
 
@@ -45,8 +48,6 @@ const Room = (props) => {
     props.connectSocket();
   }
     , []);
-
-
 
   useEffect(() => {
     if (Object.keys(props.socket).length) {

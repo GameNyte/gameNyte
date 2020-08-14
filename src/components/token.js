@@ -68,26 +68,6 @@ const Token = (props, idx) => {
     //     });
     // };
 
-    // onStart = () => {
-    //     setState({ activeDrags: ++this.state.activeDrags });
-    // };
-
-    // onStop = () => {
-    //     setState({ activeDrags: --this.state.activeDrags });
-    // };
-
-
-
-
-
-    const classes = useStyles();
-    const playerColor = (idx) => {
-        switch (idx) {
-            case '1': return classes.orange;
-            case '2': return classes.purple;
-            case '3': return classes.blue;
-            case '4': return classes.red;
-        }
     }
     return (
         <>

@@ -76,9 +76,10 @@ const Chat = (props) => {
           setInput(e.target.value);
         } }/>
           <Button
-        variant="contained"
-        color="primary"
-        endIcon={<Icon>send</Icon>}
+          type="submit"
+          variant="contained"
+          color="primary"
+          endIcon={<Icon>send</Icon>}
       >
         Send
       </Button>
