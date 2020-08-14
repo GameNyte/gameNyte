@@ -1,5 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
+import {connect} from 'react-redux';
+import {updatePlayers} from '../store/players.js'
+
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Slider from '@material-ui/core/Slider';
 
@@ -71,7 +74,14 @@ class Board extends React.Component {
 
     //     this.setState({ maps: this.state.maps.concat(fileName.locationArray[0]) })
 
-    // }
+
+    }
+
+    handleSliderChange = (newValue) => {
+        this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
+        this.setState({slider: {...this.state.slider, value: newValue}})
+    }
+
 
     handleSliderChange = (newValue) => {
         this.setState({zoomWrapper: {...this.state.zoomWrapper, scale: newValue}})
@@ -79,6 +89,7 @@ class Board extends React.Component {
     }
 
     render() {
+        console.log(this.props.players)
         const {value, min, step, max} = this.state.slider
         const {panningEnabled, maxScale, minScale} = this.state.zoomWrapper;
         const { deltaPosition, controlledPosition } = this.state.playerLocation;
@@ -112,14 +123,14 @@ class Board extends React.Component {
                     >
                         <TransformComponent>
 
+
                             <img src={this.state.maps[0]} />
+
 
                             
                             <Token />
 
-                            {/* <Token
-                                playerList = {this.state.playerList}
-                            /> */}
+
 
                         </TransformComponent>
                     </TransformWrapper>
@@ -129,16 +140,15 @@ class Board extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
 
+const mapStateToProps = (state) => {
     return {
-        playerList: state.players,
-    };
-};
+        players:state.players
+    }
+}
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+    updatePlayers,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Board);

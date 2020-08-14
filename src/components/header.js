@@ -4,7 +4,7 @@ import { createAccount, login } from '../store/login.js';
 import { AppBar, Typography, IconButton, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LoginBanner from './login-banner.js'
-import GameHUD from './gameHUD.js'
+// import GameHUD from './gameHUD.js'
 import If from '../components/if.js';
 
 const jwt = require('jsonwebtoken');
