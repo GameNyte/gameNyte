@@ -28,7 +28,6 @@ class GameHUD extends React.Component {
     }
 
     render() {
-        console.log('this.props from gameHUD', this.props);
         return (
             <>
 
