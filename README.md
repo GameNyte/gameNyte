@@ -1,5 +1,4 @@
 # Game Nyte
-![logo](/src/assets/gameNyte_logo.png)
 
 
 Group Final project for Code Fellows Advanced Javascript
